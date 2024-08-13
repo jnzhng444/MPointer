@@ -1,7 +1,9 @@
 # ninja log v6
-11	354	7452879985659604	CMakeFiles/MPointer.dir/MPointerGC.cpp.obj	528732ff15011c1d
-9	249	7452882230251951	build.ninja	38f3f2fbab16142c
-2	253	7452882230251951	build.ninja	38f3f2fbab16142c
-9	380	7452883091991160	CMakeFiles/MPointer.dir/MPointerGC.cpp.obj	528732ff15011c1d
-5	378	7452884758829386	CMakeFiles/MPointer.dir/main.cpp.obj	6fe41c2d8781cc8e
-378	508	7452884762561623	MPointer.exe	49fe2aeb637aa716
+20	399	7452891157441464	CMakeFiles/MPointer.dir/MPointerGC.cpp.obj	528732ff15011c1d
+17	390	7452898118369508	CMakeFiles/MPointer.dir/src/MPointerGC.cpp.obj	167b167e0b2a925e
+8	313	7452903381325022	build.ninja	38f3f2fbab16142c
+19	400	7452902471601420	CMakeFiles/MPointer.dir/src/main.cpp.obj	9c261c7d14469873
+17	180	7452900673417317	libMPointerLib.a	d3402662aa9813c8
+5	407	7452896303421029	CMakeFiles/MPointer.dir/main.cpp.obj	6fe41c2d8781cc8e
+402	482	7452902475428991	MPointer.exe	64cadf8f1f114e1b
+20	378	7452900547419954	CMakeFiles/MPointerLib.dir/src/MPointerGC.cpp.obj	b91e973572b11aff

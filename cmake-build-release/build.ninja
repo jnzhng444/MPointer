@@ -41,25 +41,52 @@ include CMakeFiles/rules.ninja
 
 cmake_ninja_workdir = C$:/Users/snipe/OneDrive/Desktop/MPointer/cmake-build-release/
 # =============================================================================
+# Object build statements for STATIC_LIBRARY target MPointerLib
+
+
+#############################################
+# Order-only phony target for MPointerLib
+
+build cmake_object_order_depends_target_MPointerLib: phony || CMakeFiles/MPointerLib.dir
+
+build CMakeFiles/MPointerLib.dir/src/MPointerGC.cpp.obj: CXX_COMPILER__MPointerLib_unscanned_Release C$:/Users/snipe/OneDrive/Desktop/MPointer/src/MPointerGC.cpp || cmake_object_order_depends_target_MPointerLib
+  DEP_FILE = CMakeFiles\MPointerLib.dir\src\MPointerGC.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/snipe/OneDrive/Desktop/MPointer/include
+  OBJECT_DIR = CMakeFiles\MPointerLib.dir
+  OBJECT_FILE_DIR = CMakeFiles\MPointerLib.dir\src
+
+
+# =============================================================================
+# Link build statements for STATIC_LIBRARY target MPointerLib
+
+
+#############################################
+# Link the static library libMPointerLib.a
+
+build libMPointerLib.a: CXX_STATIC_LIBRARY_LINKER__MPointerLib_Release CMakeFiles/MPointerLib.dir/src/MPointerGC.cpp.obj
+  LANGUAGE_COMPILE_FLAGS = -O3 -DNDEBUG
+  OBJECT_DIR = CMakeFiles\MPointerLib.dir
+  POST_BUILD = cd .
+  PRE_LINK = cd .
+  TARGET_FILE = libMPointerLib.a
+  TARGET_PDB = MPointerLib.a.dbg
+
+# =============================================================================
 # Object build statements for EXECUTABLE target MPointer
 
 
 #############################################
 # Order-only phony target for MPointer
 
-build cmake_object_order_depends_target_MPointer: phony || CMakeFiles/MPointer.dir
+build cmake_object_order_depends_target_MPointer: phony || cmake_object_order_depends_target_MPointerLib
 
-build CMakeFiles/MPointer.dir/main.cpp.obj: CXX_COMPILER__MPointer_unscanned_Release C$:/Users/snipe/OneDrive/Desktop/MPointer/main.cpp || cmake_object_order_depends_target_MPointer
-  DEP_FILE = CMakeFiles\MPointer.dir\main.cpp.obj.d
+build CMakeFiles/MPointer.dir/src/main.cpp.obj: CXX_COMPILER__MPointer_unscanned_Release C$:/Users/snipe/OneDrive/Desktop/MPointer/src/main.cpp || cmake_object_order_depends_target_MPointer
+  DEP_FILE = CMakeFiles\MPointer.dir\src\main.cpp.obj.d
   FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/snipe/OneDrive/Desktop/MPointer/include
   OBJECT_DIR = CMakeFiles\MPointer.dir
-  OBJECT_FILE_DIR = CMakeFiles\MPointer.dir
-
-build CMakeFiles/MPointer.dir/MPointerGC.cpp.obj: CXX_COMPILER__MPointer_unscanned_Release C$:/Users/snipe/OneDrive/Desktop/MPointer/MPointerGC.cpp || cmake_object_order_depends_target_MPointer
-  DEP_FILE = CMakeFiles\MPointer.dir\MPointerGC.cpp.obj.d
-  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
-  OBJECT_DIR = CMakeFiles\MPointer.dir
-  OBJECT_FILE_DIR = CMakeFiles\MPointer.dir
+  OBJECT_FILE_DIR = CMakeFiles\MPointer.dir\src
 
 
 # =============================================================================
@@ -69,9 +96,9 @@ build CMakeFiles/MPointer.dir/MPointerGC.cpp.obj: CXX_COMPILER__MPointer_unscann
 #############################################
 # Link the executable MPointer.exe
 
-build MPointer.exe: CXX_EXECUTABLE_LINKER__MPointer_Release CMakeFiles/MPointer.dir/main.cpp.obj CMakeFiles/MPointer.dir/MPointerGC.cpp.obj
+build MPointer.exe: CXX_EXECUTABLE_LINKER__MPointer_Release CMakeFiles/MPointer.dir/src/main.cpp.obj | libMPointerLib.a || libMPointerLib.a
   FLAGS = -O3 -DNDEBUG
-  LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
+  LINK_LIBRARIES = libMPointerLib.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\MPointer.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
@@ -107,6 +134,8 @@ build rebuild_cache: phony CMakeFiles/rebuild_cache.util
 
 build MPointer: phony MPointer.exe
 
+build MPointerLib: phony libMPointerLib.a
+
 # =============================================================================
 # Folder targets.
 
@@ -115,7 +144,7 @@ build MPointer: phony MPointer.exe
 #############################################
 # Folder: C:/Users/snipe/OneDrive/Desktop/MPointer/cmake-build-release
 
-build all: phony MPointer.exe
+build all: phony libMPointerLib.a MPointer.exe
 
 # =============================================================================
 # Built-in targets

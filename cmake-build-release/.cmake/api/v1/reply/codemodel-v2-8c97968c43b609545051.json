@@ -15,7 +15,8 @@
 					"source" : ".",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -30,7 +31,8 @@
 					"name" : "MPointer",
 					"targetIndexes" : 
 					[
-						0
+						0,
+						1
 					]
 				}
 			],
@@ -39,8 +41,15 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "MPointer::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-MPointer-Release-a6d08914ee37c0058779.json",
+					"jsonFile" : "target-MPointer-Release-ecce8cf979ce7d9a81b6.json",
 					"name" : "MPointer",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "MPointerLib::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-MPointerLib-Release-263cfd3b35b66b71ed1b.json",
+					"name" : "MPointerLib",
 					"projectIndex" : 0
 				}
 			]

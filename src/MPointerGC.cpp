@@ -1,6 +1,6 @@
 // MPointerGC.cpp
 
-#include "MPointerGC.h"
+#include "../include/MPointerGC.h"
 #include <thread>
 #include <chrono>
 

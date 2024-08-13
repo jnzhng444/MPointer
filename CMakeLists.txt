@@ -3,9 +3,16 @@ project(MPointer)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(MPointer main.cpp
-        MPointer.h
-        MPointerGC.cpp
-        MPointerGC.h
+# Añadir el directorio de los headers
+include_directories(include)
 
+# Crear una biblioteca estática con los archivos .cpp
+add_library(MPointerLib STATIC
+        src/MPointerGC.cpp
 )
+
+# Crear el ejecutable principal
+add_executable(MPointer src/main.cpp)
+
+# Enlazar la biblioteca estática con el ejecutable
+target_link_libraries(MPointer MPointerLib)
