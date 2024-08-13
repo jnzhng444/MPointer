@@ -19,6 +19,7 @@ private:
     std::unordered_map<int, MPointerInfo> pointersMap;
     int nextId;
     std::mutex mtx;
+    bool gcRunning; // Flag to indicate if GC is running
 
     MPointerGC();
 
@@ -29,6 +30,7 @@ public:
     void unregisterPointer(int id);
     void increaseRefCount(int id);
     void startGC();
+    void stopGC(); // Method to stop GC
 
 private:
     void collectGarbage();

@@ -14,8 +14,9 @@ public:
     static MPointer<T> New(); // Método para crear un nuevo MPointer
 
     T& operator*();   // Sobrecarga del operador *
-    T* operator&() const;  // Sobrecarga del operador & para devolver puntero a T
+    T* operator->() const;  // Sobrecarga del operador -> para acceder a los miembros del objeto apuntado
 
+    MPointer<T>& operator=(const MPointer<T>& other); // Asignación entre MPointers
     MPointer<T>& operator=(const T& value); // Asignación de valor directo
 
     ~MPointer(); // Destructor

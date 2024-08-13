@@ -2,24 +2,39 @@
 #include <iostream>
 
 int main() {
+    // Iniciar el recolector de basura
+    MPointerGC::getInstance()->startGC();
+
     // Crear un nuevo MPointer para enteros
-    MPointer<int> ptr1 = MPointer<int>::New();
-
+    MPointer<int> myPtr = MPointer<int>::New();
     // Asignar un valor
-    *ptr1 = 42;
-
-    // Imprimir el valor
-    std::cout << "Valor de ptr1: " << *ptr1 << std::endl;
+    *myPtr = 5;
+    // Leer el valor
+    int valor = *myPtr;
+    std::cout << "Valor de myPtr: " << valor << std::endl; // Debería imprimir 5
 
     // Crear otro MPointer para enteros
-    MPointer<int> ptr2 = MPointer<int>::New();
-
+    MPointer<int> myPtr2 = MPointer<int>::New();
     // Asignar un valor
-    *ptr2 = 99;
+    *myPtr2 = 10;
+    std::cout << "Valor de myPtr2: " << *myPtr2 << std::endl; // Debería imprimir 10
 
-    // Imprimir el valor
-    std::cout << "Valor de ptr2: " << *ptr2 << std::endl;
+    // Asignar myPtr a myPtr2
+    myPtr2 = myPtr;
+    std::cout << "Valor de myPtr2 después de asignar myPtr: " << *myPtr2 << std::endl; // Debería imprimir 5
 
-    // Terminar el programa, debería desencadenar la recolección de basura
+    // Asignar un nuevo valor a myPtr
+    *myPtr = 6;
+    std::cout << "Valor de myPtr después de cambiar el valor: " << *myPtr << std::endl; // Debería imprimir 6
+    std::cout << "Valor de myPtr2 después de cambiar el valor de myPtr: " << *myPtr2 << std::endl; // Debería imprimir 6
+
+    // Asignar un valor directamente
+    myPtr2 = 7;
+    std::cout << "Valor de myPtr2 después de asignar 7: " << *myPtr2 << std::endl; // Debería imprimir 7
+
+    // Detener el recolector de basura antes de finalizar el programa
+    MPointerGC::getInstance()->stopGC();
+
+    // Finalizar el programa
     return 0;
 }

@@ -1,6 +1,4 @@
-// MPointerGC.cpp
-
-#include "../include/MPointerGC.h"
+#include "MPointerGC.h"
 #include <thread>
 #include <chrono>
 
@@ -9,7 +7,7 @@ MPointerGC* MPointerGC::getInstance() {
     return &instance;
 }
 
-MPointerGC::MPointerGC() : nextId(0) {}
+MPointerGC::MPointerGC() : nextId(0), gcRunning(false) {}
 
 int MPointerGC::registerPointer(MPointerBase* mpointer) {
     std::lock_guard<std::mutex> lock(mtx);
@@ -36,12 +34,17 @@ void MPointerGC::increaseRefCount(int id) {
 }
 
 void MPointerGC::startGC() {
+    gcRunning = true;
     std::thread([this]() {
-        while (true) {
+        while (gcRunning) {
             std::this_thread::sleep_for(std::chrono::seconds(10));
             this->collectGarbage();
         }
     }).detach();
+}
+
+void MPointerGC::stopGC() {
+    gcRunning = false;
 }
 
 void MPointerGC::collectGarbage() {
