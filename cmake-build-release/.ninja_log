@@ -1,0 +1,7 @@
+# ninja log v6
+11	354	7452879985659604	CMakeFiles/MPointer.dir/MPointerGC.cpp.obj	528732ff15011c1d
+9	249	7452882230251951	build.ninja	38f3f2fbab16142c
+2	253	7452882230251951	build.ninja	38f3f2fbab16142c
+9	380	7452883091991160	CMakeFiles/MPointer.dir/MPointerGC.cpp.obj	528732ff15011c1d
+5	378	7452884758829386	CMakeFiles/MPointer.dir/main.cpp.obj	6fe41c2d8781cc8e
+378	508	7452884762561623	MPointer.exe	49fe2aeb637aa716
