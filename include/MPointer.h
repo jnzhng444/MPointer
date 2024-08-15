@@ -6,22 +6,22 @@
 template <typename T>
 class MPointer {
 private:
-    T* ptr;
-    int id;
+    T* ptr;  // Puntero al tipo T
+    int id;  // ID en el garbage collector
 
-    MPointer();
+    MPointer();  // Constructor privado
 
 public:
-    static MPointer<T> New();
-    ~MPointer();
+    static MPointer<T> New();  // Método estático para crear un nuevo MPointer
+    ~MPointer();  // Destructor
 
-    T& operator*();
-    T* operator&();
+    T& operator*();  // Sobrecarga del operador *
+    T operator&();  // Sobrecarga del operador &
 
-    MPointer<T>& operator=(const MPointer<T>& other);
-    MPointer<T>& operator=(const T& value);
+    MPointer<T>& operator=(const MPointer<T>& other);  // Sobrecarga del operador =
+    MPointer<T>& operator=(const T& value);  // Sobrecarga del operador = para asignación de valor directo
 
-    int GetID() const;
+    int GetID() const;  // Obtiene el ID del MPointer
 };
 
 #include "MPointer.tpp"

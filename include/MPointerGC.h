@@ -5,10 +5,11 @@
 #include <mutex>
 #include <thread>
 #include <chrono>
+#include <functional>
 
 class MPointerGC {
 private:
-    std::unordered_map<int, std::pair<void*, int>> pointers; // ID -> (pointer, ref_count)
+    std::unordered_map<int, std::pair<void*, std::function<void(void*)>>> pointers;  // ID -> (puntero, función de eliminación)
     std::mutex mtx;
     static MPointerGC* instance;
 
@@ -17,13 +18,13 @@ private:
 public:
     static MPointerGC& GetInstance();
 
-    int RegisterPointer(void* mpointer);
-    void DeregisterPointer(int id);
-    void IncrementRefCount(int id);
-    void DecrementRefCount(int id);
+    int RegisterPointer(void* mpointer, std::function<void(void*)> deleter);  // Registrar un nuevo puntero
+    void DeregisterPointer(int id);  // Eliminar un puntero registrado
+    void IncrementRefCount(int id);  // Incrementar el contador de referencias
+    void DecrementRefCount(int id);  // Decrementar el contador de referencias
 
-    void StartGarbageCollector();
-    void CollectGarbage();
+    void StartGarbageCollector();  // Iniciar el garbage collector
+    void CollectGarbage();  // Recolectar basura
 };
 
 #endif // MPOINTERGC_H

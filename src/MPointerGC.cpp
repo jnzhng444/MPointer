@@ -12,10 +12,10 @@ MPointerGC& MPointerGC::GetInstance() {
     return *instance;
 }
 
-int MPointerGC::RegisterPointer(void* mpointer) {
+int MPointerGC::RegisterPointer(void* mpointer, std::function<void(void*)> deleter) {
     std::lock_guard<std::mutex> lock(mtx);
     static int id_counter = 0;
-    pointers[++id_counter] = std::make_pair(mpointer, 1); // Inicia con una referencia
+    pointers[++id_counter] = std::make_pair(mpointer, deleter);
     return id_counter;
 }
 
@@ -23,24 +23,19 @@ void MPointerGC::DeregisterPointer(int id) {
     std::lock_guard<std::mutex> lock(mtx);
     auto it = pointers.find(id);
     if (it != pointers.end()) {
-        if (--(it->second.second) == 0) {
-            delete static_cast<int*>(it->second.first); // Libera la memoria
-            pointers.erase(it);
-        }
+        it->second.second(it->second.first);  // Llama a la función de eliminación
+        pointers.erase(it);  // Elimina del mapa
     }
 }
 
 void MPointerGC::IncrementRefCount(int id) {
     std::lock_guard<std::mutex> lock(mtx);
-    pointers[id].second++;
+    // Aquí podrías implementar un contador de referencias si fuera necesario.
 }
 
 void MPointerGC::DecrementRefCount(int id) {
     std::lock_guard<std::mutex> lock(mtx);
-    if (--pointers[id].second == 0) {
-        delete static_cast<int*>(pointers[id].first); // Libera la memoria
-        pointers.erase(id);
-    }
+    // Aquí podrías implementar la lógica para reducir el contador de referencias.
 }
 
 void MPointerGC::StartGarbageCollector() {
@@ -55,11 +50,7 @@ void MPointerGC::StartGarbageCollector() {
 void MPointerGC::CollectGarbage() {
     std::lock_guard<std::mutex> lock(mtx);
     for (auto it = pointers.begin(); it != pointers.end();) {
-        if (it->second.second == 0) { // Si el contador de referencias es 0
-            delete static_cast<int*>(it->second.first); // Libera la memoria
-            it = pointers.erase(it); // Elimina del mapa
-        } else {
-            ++it;
-        }
+        // Aquí podrías implementar lógica para liberar memoria si fuera necesario.
+        ++it;
     }
 }
