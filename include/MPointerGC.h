@@ -3,37 +3,27 @@
 
 #include <unordered_map>
 #include <mutex>
-
-class MPointerBase {
-public:
-    virtual ~MPointerBase() = default;
-};
+#include <thread>
+#include <chrono>
 
 class MPointerGC {
 private:
-    struct MPointerInfo {
-        MPointerBase* mpointer;
-        int refCount;
-    };
-
-    std::unordered_map<int, MPointerInfo> pointersMap;
-    int nextId;
+    std::unordered_map<int, std::pair<void*, int>> pointers; // ID -> (pointer, ref_count)
     std::mutex mtx;
-    bool gcRunning; // Flag to indicate if GC is running
+    static MPointerGC* instance;
 
     MPointerGC();
 
 public:
-    static MPointerGC* getInstance();
+    static MPointerGC& GetInstance();
 
-    int registerPointer(MPointerBase* mpointer);
-    void unregisterPointer(int id);
-    void increaseRefCount(int id);
-    void startGC();
-    void stopGC(); // Method to stop GC
+    int RegisterPointer(void* mpointer);
+    void DeregisterPointer(int id);
+    void IncrementRefCount(int id);
+    void DecrementRefCount(int id);
 
-private:
-    void collectGarbage();
+    void StartGarbageCollector();
+    void CollectGarbage();
 };
 
-#endif
+#endif // MPOINTERGC_H

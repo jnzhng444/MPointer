@@ -1,58 +1,63 @@
 #include "MPointerGC.h"
-#include <thread>
-#include <chrono>
+#include <iostream>
 
-MPointerGC* MPointerGC::getInstance() {
-    static MPointerGC instance;
-    return &instance;
+MPointerGC* MPointerGC::instance = nullptr;
+
+MPointerGC::MPointerGC() {}
+
+MPointerGC& MPointerGC::GetInstance() {
+    if (!instance) {
+        instance = new MPointerGC();
+    }
+    return *instance;
 }
 
-MPointerGC::MPointerGC() : nextId(0), gcRunning(false) {}
-
-int MPointerGC::registerPointer(MPointerBase* mpointer) {
+int MPointerGC::RegisterPointer(void* mpointer) {
     std::lock_guard<std::mutex> lock(mtx);
-    int id = nextId++;
-    pointersMap[id] = {mpointer, 1};
-    return id;
+    static int id_counter = 0;
+    pointers[++id_counter] = std::make_pair(mpointer, 1); // Inicia con una referencia
+    return id_counter;
 }
 
-void MPointerGC::unregisterPointer(int id) {
+void MPointerGC::DeregisterPointer(int id) {
     std::lock_guard<std::mutex> lock(mtx);
-    auto it = pointersMap.find(id);
-    if (it != pointersMap.end()) {
-        it->second.refCount--;
-        if (it->second.refCount <= 0) {
-            delete it->second.mpointer;
-            pointersMap.erase(it);
+    auto it = pointers.find(id);
+    if (it != pointers.end()) {
+        if (--(it->second.second) == 0) {
+            delete static_cast<int*>(it->second.first); // Libera la memoria
+            pointers.erase(it);
         }
     }
 }
 
-void MPointerGC::increaseRefCount(int id) {
+void MPointerGC::IncrementRefCount(int id) {
     std::lock_guard<std::mutex> lock(mtx);
-    pointersMap[id].refCount++;
+    pointers[id].second++;
 }
 
-void MPointerGC::startGC() {
-    gcRunning = true;
+void MPointerGC::DecrementRefCount(int id) {
+    std::lock_guard<std::mutex> lock(mtx);
+    if (--pointers[id].second == 0) {
+        delete static_cast<int*>(pointers[id].first); // Libera la memoria
+        pointers.erase(id);
+    }
+}
+
+void MPointerGC::StartGarbageCollector() {
     std::thread([this]() {
-        while (gcRunning) {
-            std::this_thread::sleep_for(std::chrono::seconds(10));
-            this->collectGarbage();
+        while (true) {
+            std::this_thread::sleep_for(std::chrono::seconds(5));
+            CollectGarbage();
         }
     }).detach();
 }
 
-void MPointerGC::stopGC() {
-    gcRunning = false;
-}
-
-void MPointerGC::collectGarbage() {
+void MPointerGC::CollectGarbage() {
     std::lock_guard<std::mutex> lock(mtx);
-    for (auto it = pointersMap.begin(); it != pointersMap.end(); ) {
-        if (it->second.refCount <= 0) {
-            delete it->second.mpointer;
-            it = pointersMap.erase(it);
+    for (auto it = pointers.begin(); it != pointers.end();) {
+        if (it->second.second == 0) { // Si el contador de referencias es 0
+            delete static_cast<int*>(it->second.first); // Libera la memoria
+            it = pointers.erase(it); // Elimina del mapa
         } else {
             ++it;
         }

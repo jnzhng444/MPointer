@@ -4,24 +4,26 @@
 #include "MPointerGC.h"
 
 template <typename T>
-class MPointer : public MPointerBase {
+class MPointer {
 private:
-    T* ptr; // Puntero encapsulado
-    int id; // ID único asignado por MPointerGC
-    static MPointerGC* gc; // Referencia a MPointerGC
+    T* ptr;
+    int id;
+
+    MPointer();
 
 public:
-    static MPointer<T> New(); // Método para crear un nuevo MPointer
+    static MPointer<T> New();
+    ~MPointer();
 
-    T& operator*();   // Sobrecarga del operador *
-    T* operator->() const;  // Sobrecarga del operador -> para acceder a los miembros del objeto apuntado
+    T& operator*();
+    T* operator&();
 
-    MPointer<T>& operator=(const MPointer<T>& other); // Asignación entre MPointers
-    MPointer<T>& operator=(const T& value); // Asignación de valor directo
+    MPointer<T>& operator=(const MPointer<T>& other);
+    MPointer<T>& operator=(const T& value);
 
-    ~MPointer(); // Destructor
+    int GetID() const;
 };
 
-#include "MPointer.tpp" // Incluye la implementación del template
+#include "MPointer.tpp"
 
-#endif
+#endif // MPOINTER_H

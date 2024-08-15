@@ -1,15 +1,23 @@
+#ifndef MPOINTER_TPP
+#define MPOINTER_TPP
+
 #include "MPointer.h"
 
 template <typename T>
-MPointerGC* MPointer<T>::gc = MPointerGC::getInstance();
+MPointer<T>::MPointer() {
+    ptr = new T();
+    id = MPointerGC::GetInstance().RegisterPointer(ptr);
+}
 
 template <typename T>
 MPointer<T> MPointer<T>::New() {
-    MPointer<T> mp;
-    mp.ptr = new T();
-    // Registrar el puntero al objeto MPointer<T> en lugar del puntero al objeto T
-    mp.id = gc->registerPointer(&mp);
-    return mp;
+    return MPointer<T>();
+}
+
+template <typename T>
+MPointer<T>::~MPointer() {
+    MPointerGC::GetInstance().DeregisterPointer(id);
+    delete ptr;
 }
 
 template <typename T>
@@ -18,22 +26,17 @@ T& MPointer<T>::operator*() {
 }
 
 template <typename T>
-T* MPointer<T>::operator->() const {
-    return ptr;  // Devuelve el puntero al objeto apuntado
+T* MPointer<T>::operator&() {
+    return ptr;
 }
 
 template <typename T>
 MPointer<T>& MPointer<T>::operator=(const MPointer<T>& other) {
     if (this != &other) {
-        // Desregistrar el puntero actual
-        gc->unregisterPointer(id);
-
-        // Copiar el puntero y el id del objeto "other"
+        MPointerGC::GetInstance().DeregisterPointer(id);
         ptr = other.ptr;
         id = other.id;
-
-        // Incrementar el recuento de referencias del puntero copiado
-        gc->increaseRefCount(id);
+        MPointerGC::GetInstance().IncrementRefCount(id);
     }
     return *this;
 }
@@ -45,7 +48,8 @@ MPointer<T>& MPointer<T>::operator=(const T& value) {
 }
 
 template <typename T>
-MPointer<T>::~MPointer() {
-    gc->unregisterPointer(id);
-    delete ptr;
+int MPointer<T>::GetID() const {
+    return id;
 }
+
+#endif // MPOINTER_TPP
