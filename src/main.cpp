@@ -1,6 +1,7 @@
 #include <iostream>
 #include "MPointer.h"
 #include "MPointerGC.h"
+#include "Lista/DoublyLinkedList.h"
 
 int main() {
     MPointerGC::GetInstance().StartGarbageCollector();
@@ -19,6 +20,20 @@ int main() {
 
     int valor = &myPtr;  // Utilizando el operador & para obtener el valor
     std::cout << "Valor obtenido con &: " << valor << std::endl;
+
+    DoublyLinkedList<int> list;
+    list.append(10);
+    list.append(20);
+    list.prepend(5);
+    list.append(15);
+
+    std::cout << "Lista antes de ordenar:" << std::endl;
+    Node<int>* node = list.getHead();
+    while (node) {
+        std::cout << *node->data << " ";
+        node = node->next;
+    }
+    std::cout << std::endl;
 
     return 0;
 }

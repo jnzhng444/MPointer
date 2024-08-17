@@ -130,6 +130,15 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/DoublyLinkedList.h">
+			<Option target="MPointer"/>
+		</Unit>
+		<Unit filename="C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/DoublyLinkedList.tpp">
+			<Option target="MPointer"/>
+		</Unit>
+		<Unit filename="C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/Node.h">
+			<Option target="MPointer"/>
+		</Unit>
 		<Unit filename="C:/Users/snipe/OneDrive/Desktop/MPointer/src/MPointerGC.cpp">
 			<Option target="MPointerLib"/>
 		</Unit>

@@ -12,7 +12,11 @@ add_library(MPointerLib STATIC
 )
 
 # Crear el ejecutable principal
-add_executable(MPointer src/main.cpp)
+add_executable(MPointer src/main.cpp
+        include/Lista/DoublyLinkedList.h
+        include/Lista/Node.h
+        include/Lista/DoublyLinkedList.tpp
+)
 
 # Enlazar la biblioteca estática con el ejecutable
 target_link_libraries(MPointer MPointerLib)
