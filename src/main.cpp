@@ -2,6 +2,9 @@
 #include "MPointer.h"
 #include "MPointerGC.h"
 #include "Lista/DoublyLinkedList.h"
+#include "Ordenar/BubbleSort.h"
+#include "Ordenar/InsertionSort.h"
+#include "Ordenar/QuickSort.h"
 
 int main() {
     MPointerGC::GetInstance().StartGarbageCollector();
@@ -22,18 +25,41 @@ int main() {
     std::cout << "Valor obtenido con &: " << valor << std::endl;
 
     DoublyLinkedList<int> list;
-    list.append(10);
-    list.append(20);
-    list.prepend(5);
-    list.append(15);
+    list.append(3);
+    list.append(223);
+    list.append(4);
+    list.append(77);
+    list.append(5);
+    list.append(924);
+    list.append(23);
+    list.append(41);
+    list.append(7711);
+    list.append(5);
+    list.append(1);
 
-    std::cout << "Lista antes de ordenar:" << std::endl;
+    std::cout << " Lista antes de ordenar:" << std::endl;
     Node<int>* node = list.getHead();
     while (node) {
         std::cout << *node->data << " ";
         node = node->next;
     }
     std::cout << std::endl;
+
+    // Selecciona y aplica el algoritmo de ordenamiento
+    QuickSort<int>::sort(list);
+    //BubbleSort<int>::sort(list);
+    //InsertionSort<int>::sort(list);
+
+
+    std::cout << "Lista despues de ordenar:" << std::endl;
+    node = list.getHead();
+    while (node) {
+        std::cout << *node->data << " ";
+        node = node->next;
+    }
+    std::cout << std::endl;
+
+
 
     return 0;
 }

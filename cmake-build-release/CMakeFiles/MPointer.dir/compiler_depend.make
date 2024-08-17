@@ -187,7 +187,13 @@ CMakeFiles/MPointer.dir/src/main.cpp.obj: C:/Users/snipe/OneDrive/Desktop/MPoint
   C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/Node.h \
   C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointer.h \
   C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointer.tpp \
-  C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointerGC.h
+  C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointerGC.h \
+  C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/BubbleSort.h \
+  C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/BubbleSort.tpp \
+  C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/InsertionSort.h \
+  C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/InsertionSort.tpp \
+  C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/QuickSort.h \
+  C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/QuickSort.tpp
 
 
 C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_thread.h:
@@ -456,6 +462,8 @@ C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32
 
 C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/system_error:
 
+C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/InsertionSort.h:
+
 C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/thread:
 
 C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/x86_64-w64-mingw32/include/locale.h:
@@ -475,6 +483,8 @@ C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32
 C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h:
+
+C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/QuickSort.tpp:
 
 C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h:
 
@@ -563,3 +573,11 @@ C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointer.h:
 C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointer.tpp:
 
 C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointerGC.h:
+
+C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/BubbleSort.h:
+
+C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/BubbleSort.tpp:
+
+C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/InsertionSort.tpp:
+
+C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/QuickSort.h:

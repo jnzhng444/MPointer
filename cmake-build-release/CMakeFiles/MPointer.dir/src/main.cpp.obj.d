@@ -187,4 +187,10 @@ CMakeFiles/MPointer.dir/src/main.cpp.obj: \
  C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointerGC.h \
  C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/DoublyLinkedList.h \
  C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/Node.h \
- C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/DoublyLinkedList.tpp
+ C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/DoublyLinkedList.tpp \
+ C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/BubbleSort.h \
+ C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/BubbleSort.tpp \
+ C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/InsertionSort.h \
+ C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/InsertionSort.tpp \
+ C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/QuickSort.h \
+ C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/QuickSort.tpp

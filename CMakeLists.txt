@@ -16,6 +16,12 @@ add_executable(MPointer src/main.cpp
         include/Lista/DoublyLinkedList.h
         include/Lista/Node.h
         include/Lista/DoublyLinkedList.tpp
+        include/Ordenar/QuickSort.tpp
+        include/Ordenar/QuickSort.h
+        include/Ordenar/BubbleSort.tpp
+        include/Ordenar/BubbleSort.h
+        include/Ordenar/InsertionSort.tpp
+        include/Ordenar/InsertionSort.h
 )
 
 # Enlazar la biblioteca estática con el ejecutable

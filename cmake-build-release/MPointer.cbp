@@ -139,6 +139,24 @@
 		<Unit filename="C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/Node.h">
 			<Option target="MPointer"/>
 		</Unit>
+		<Unit filename="C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/BubbleSort.h">
+			<Option target="MPointer"/>
+		</Unit>
+		<Unit filename="C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/BubbleSort.tpp">
+			<Option target="MPointer"/>
+		</Unit>
+		<Unit filename="C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/InsertionSort.h">
+			<Option target="MPointer"/>
+		</Unit>
+		<Unit filename="C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/InsertionSort.tpp">
+			<Option target="MPointer"/>
+		</Unit>
+		<Unit filename="C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/QuickSort.h">
+			<Option target="MPointer"/>
+		</Unit>
+		<Unit filename="C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/QuickSort.tpp">
+			<Option target="MPointer"/>
+		</Unit>
 		<Unit filename="C:/Users/snipe/OneDrive/Desktop/MPointer/src/MPointerGC.cpp">
 			<Option target="MPointerLib"/>
 		</Unit>

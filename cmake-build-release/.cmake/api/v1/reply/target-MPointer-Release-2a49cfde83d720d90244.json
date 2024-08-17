@@ -35,7 +35,7 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 22,
+				"line" : 28,
 				"parent" : 0
 			},
 			{
@@ -130,14 +130,20 @@
 			"sourceIndexes" : 
 			[
 				1,
-				2
+				2,
+				5,
+				7,
+				9
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				3
+				3,
+				4,
+				6,
+				8
 			]
 		}
 	],
@@ -163,6 +169,36 @@
 			"backtrace" : 1,
 			"path" : "include/Lista/DoublyLinkedList.tpp",
 			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/Ordenar/QuickSort.tpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/Ordenar/QuickSort.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/Ordenar/BubbleSort.tpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/Ordenar/BubbleSort.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/Ordenar/InsertionSort.tpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "include/Ordenar/InsertionSort.h",
+			"sourceGroupIndex" : 1
 		}
 	],
 	"type" : "EXECUTABLE"
