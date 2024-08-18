@@ -4,9 +4,8 @@
 MPointerGC* MPointerGC::instance = nullptr;
 
 MPointerGC::MPointerGC() {
-    StartGarbageCollector();  // Iniciar el garbage collector en un thread separado
+    // Constructor vacío
 }
-
 
 MPointerGC& MPointerGC::GetInstance() {
     if (!instance) {
@@ -54,26 +53,26 @@ void MPointerGC::DecrementRefCount(int id) {
 
 void MPointerGC::StartGarbageCollector() {
     std::thread([this]() {
-        int iteration = 0;
-        while (iteration < 3) {  // Limitar a 3 iteraciones para pruebas
-            std::this_thread::sleep_for(std::chrono::seconds(1));  // Espera 1 segundo entre colecciones
+        while (true) {  // Bucle infinito para la recolección continua de basura
+            std::this_thread::sleep_for(std::chrono::seconds(5));  // Espera 5 segundos entre colecciones
             CollectGarbage();
-            iteration++;
         }
     }).detach();
 }
-
 
 void MPointerGC::CollectGarbage() {
     std::lock_guard<std::mutex> lock(mtx);
     std::cout << "Collecting garbage..." << std::endl;
 
     for (auto it = pointers.begin(); it != pointers.end();) {
-        // Aquí podrías implementar lógica para liberar memoria si fuera necesario.
-        std::cout << "Pointer ID: " << it->first << " still exists." << std::endl;
-        ++it;
+        if (ref_counts[it->first] == 0) {  // Verificar si el puntero debe ser eliminado
+            it->second.second(it->second.first);  // Llama a la función de eliminación
+            it = pointers.erase(it);  // Elimina del mapa
+            ref_counts.erase(it->first);  // Elimina el contador de referencias
+        } else {
+            ++it;
+        }
     }
 
     std::cout << "Garbage collection cycle completed." << std::endl;
 }
-

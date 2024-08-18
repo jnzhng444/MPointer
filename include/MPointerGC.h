@@ -14,8 +14,7 @@ private:
     std::mutex mtx;
     static MPointerGC* instance;
 
-    MPointerGC();
-
+    MPointerGC();  // Constructor privado
 
 public:
     static MPointerGC& GetInstance();
@@ -27,7 +26,6 @@ public:
 
     void StartGarbageCollector();  // Iniciar el garbage collector
     void CollectGarbage();  // Recolectar basura
-
 };
 
 #endif // MPOINTERGC_H

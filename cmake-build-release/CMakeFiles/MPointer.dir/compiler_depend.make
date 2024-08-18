@@ -182,9 +182,14 @@ CMakeFiles/MPointer.dir/src/main.cpp.obj: C:/Users/snipe/OneDrive/Desktop/MPoint
   C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/x86_64-w64-mingw32/include/vadefs.h \
   C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/x86_64-w64-mingw32/include/wchar.h \
   C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/x86_64-w64-mingw32/include/wctype.h \
+  C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/DoublyLinkedList.h \
+  C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/DoublyLinkedList.tpp \
+  C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/Node.h \
   C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointer.h \
   C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointer.tpp \
-  C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointerGC.h
+  C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointerGC.h \
+  C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/QuickSort.h \
+  C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/QuickSort.tpp
 
 
 C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/std_thread.h:
@@ -238,6 +243,8 @@ C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32
 C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_ios.tcc:
 
 C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_string.h:
+
+C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/DoublyLinkedList.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cwctype:
 
@@ -471,6 +478,8 @@ C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32
 
 C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h:
 
+C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/QuickSort.tpp:
+
 C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h:
 
 C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h:
@@ -549,8 +558,14 @@ C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/x86_64-w64-mingw32/include
 
 C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/x86_64-w64-mingw32/include/wctype.h:
 
+C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/DoublyLinkedList.tpp:
+
+C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/Node.h:
+
 C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointer.h:
 
 C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointer.tpp:
 
 C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointerGC.h:
+
+C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/QuickSort.h:
