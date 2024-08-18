@@ -10,10 +10,12 @@
 class MPointerGC {
 private:
     std::unordered_map<int, std::pair<void*, std::function<void(void*)>>> pointers;  // ID -> (puntero, función de eliminación)
+    std::unordered_map<int, int> ref_counts;  // ID -> contador de referencias
     std::mutex mtx;
     static MPointerGC* instance;
 
     MPointerGC();
+
 
 public:
     static MPointerGC& GetInstance();
@@ -25,6 +27,7 @@ public:
 
     void StartGarbageCollector();  // Iniciar el garbage collector
     void CollectGarbage();  // Recolectar basura
+
 };
 
 #endif // MPOINTERGC_H

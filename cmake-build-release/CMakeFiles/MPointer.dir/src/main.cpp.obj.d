@@ -183,14 +183,4 @@ CMakeFiles/MPointer.dir/src/main.cpp.obj: \
  C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uniform_int_dist.h \
  C:/Program\ Files/JetBrains/CLion\ 2024.1.4/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_tempbuf.h \
  C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointer.tpp \
- C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointer.h \
- C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointerGC.h \
- C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/DoublyLinkedList.h \
- C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/Node.h \
- C:/Users/snipe/OneDrive/Desktop/MPointer/include/Lista/DoublyLinkedList.tpp \
- C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/BubbleSort.h \
- C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/BubbleSort.tpp \
- C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/InsertionSort.h \
- C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/InsertionSort.tpp \
- C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/QuickSort.h \
- C:/Users/snipe/OneDrive/Desktop/MPointer/include/Ordenar/QuickSort.tpp
+ C:/Users/snipe/OneDrive/Desktop/MPointer/include/MPointer.h

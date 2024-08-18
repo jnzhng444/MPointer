@@ -9,6 +9,7 @@ MPointer<T>::MPointer() {
     id = MPointerGC::GetInstance().RegisterPointer(ptr, [](void* p) {
         delete static_cast<T*>(p);  // Función de eliminación para este tipo
     });
+    std::cout << "MPointer created with ID: " << id << std::endl;
 }
 
 template <typename T>
@@ -18,6 +19,7 @@ MPointer<T> MPointer<T>::New() {
 
 template <typename T>
 MPointer<T>::~MPointer() {
+    std::cout << "Destroying MPointer with ID: " << id << std::endl;
     MPointerGC::GetInstance().DeregisterPointer(id);  // Eliminar el puntero del garbage collector
 }
 
@@ -27,8 +29,8 @@ T& MPointer<T>::operator*() {
 }
 
 template <typename T>
-T MPointer<T>::operator&() {
-    return *ptr;  // Retornar el valor almacenado en el puntero
+T* MPointer<T>::operator&() {
+    return ptr;  // Retornar el valor almacenado en el puntero
 }
 
 template <typename T>

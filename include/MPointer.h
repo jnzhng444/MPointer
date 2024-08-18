@@ -16,7 +16,7 @@ public:
     ~MPointer();  // Destructor
 
     T& operator*();  // Sobrecarga del operador *
-    T operator&();  // Sobrecarga del operador &
+    T* operator&();  // Sobrecarga del operador & para devolver la dirección
 
     MPointer<T>& operator=(const MPointer<T>& other);  // Sobrecarga del operador =
     MPointer<T>& operator=(const T& value);  // Sobrecarga del operador = para asignación de valor directo
