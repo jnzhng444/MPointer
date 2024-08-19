@@ -24,6 +24,9 @@ public:
     Node<T>* getHead() const;
     Node<T>* getTail() const;
 
+    // Método para establecer la cabeza de la lista
+    void setHead(Node<T>* newHead);
+
     // Prevención de copias
     DoublyLinkedList(const DoublyLinkedList&) = delete;
     DoublyLinkedList& operator=(const DoublyLinkedList&) = delete;

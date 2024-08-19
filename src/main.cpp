@@ -1,6 +1,8 @@
 #include <iostream>
 #include "MPointer.h"
 #include "Lista/DoublyLinkedList.h"
+#include "Ordenar/BubbleSort.h"
+#include "Ordenar/InsertionSort.h"
 #include "Ordenar/QuickSort.h"
 
 int main() {
@@ -44,7 +46,6 @@ int main() {
     list.append(1);
 
     std::cout << "Lista antes de ordenar:" << std::endl;
-    std::cout << " Lista antes de ordenar:" << std::endl;
     Node<int>* node = list.getHead();
     while (node) {
         std::cout << *node->data << " ";
@@ -53,9 +54,9 @@ int main() {
     std::cout << std::endl;
 
     // Selecciona y aplica el algoritmo de ordenamiento
-    QuickSort<int>::sort(list);
+    //QuickSort<int>::sort(list);
     //BubbleSort<int>::sort(list);
-    //InsertionSort<int>::sort(list);
+    InsertionSort<int>::sort(list);
 
 
     std::cout << "Lista despues de ordenar:" << std::endl;

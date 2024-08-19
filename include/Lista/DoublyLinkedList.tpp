@@ -10,6 +10,17 @@ DoublyLinkedList<T>::~DoublyLinkedList() {
 }
 
 template <typename T>
+void DoublyLinkedList<T>::setHead(Node<T>* newHead) {
+    head = newHead;
+    if (head) {
+        head->prev = nullptr;
+    }
+    if (!newHead) {
+        tail = nullptr;
+    }
+}
+
+template <typename T>
 void DoublyLinkedList<T>::append(const T& value) {
     Node<T>* newNode = new Node<T>(value);
     if (tail) {
