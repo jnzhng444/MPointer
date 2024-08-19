@@ -1,18 +1,29 @@
 #ifndef MPOINTERGC_H
 #define MPOINTERGC_H
 
-#include <unordered_map>
+#include <functional>
 #include <mutex>
 #include <thread>
 #include <chrono>
-#include <functional>
+#include <iostream>
 
 class MPointerGC {
 private:
-    std::unordered_map<int, std::pair<void*, std::function<void(void*)>>> pointers;  // ID -> (puntero, función de eliminación)
-    std::unordered_map<int, int> ref_counts;  // ID -> contador de referencias
+    struct Node {
+        int id;
+        void* ptr;
+        std::function<void(void*)> deleter;
+        int ref_count;  // Contador de referencias
+        Node* next;
+
+        Node(int i, void* p, std::function<void(void*)> d) : id(i), ptr(p), deleter(d), ref_count(1), next(nullptr) {}
+    };
+
+
+    Node* head;  // Cabeza de la lista enlazada
     std::mutex mtx;
     static MPointerGC* instance;
+    int id_counter;
 
     MPointerGC();  // Constructor privado
 

@@ -1,9 +1,8 @@
 #include "MPointerGC.h"
-#include <iostream>
 
 MPointerGC* MPointerGC::instance = nullptr;
 
-MPointerGC::MPointerGC() {
+MPointerGC::MPointerGC() : head(nullptr), id_counter(0) {
     // Constructor vacío
 }
 
@@ -17,37 +16,60 @@ MPointerGC& MPointerGC::GetInstance() {
 
 int MPointerGC::RegisterPointer(void* mpointer, std::function<void(void*)> deleter) {
     std::lock_guard<std::mutex> lock(mtx);
-    static int id_counter = 0;
     int id = ++id_counter;
-    pointers[id] = std::make_pair(mpointer, deleter);
-    ref_counts[id] = 1;  // Inicializar contador de referencias en 1
+    Node* newNode = new Node(id, mpointer, deleter);
+    newNode->next = head;
+    head = newNode;
     return id;
 }
 
 void MPointerGC::DeregisterPointer(int id) {
     std::lock_guard<std::mutex> lock(mtx);
-    auto it = pointers.find(id);
-    if (it != pointers.end()) {
-        it->second.second(it->second.first);  // Llama a la función de eliminación
-        pointers.erase(it);  // Elimina del mapa
-        ref_counts.erase(id);  // Elimina el contador de referencias
+    Node* current = head;
+    Node* previous = nullptr;
+
+    while (current) {
+        if (current->id == id) {
+            if (previous) {
+                previous->next = current->next;
+            } else {
+                head = current->next;
+            }
+            current->deleter(current->ptr);
+            delete current;
+            break;
+        }
+        previous = current;
+        current = current->next;
     }
 }
 
 void MPointerGC::IncrementRefCount(int id) {
     std::lock_guard<std::mutex> lock(mtx);
-    if (ref_counts.find(id) != ref_counts.end()) {
-        ref_counts[id]++;
+    Node* current = head;
+
+    while (current) {
+        if (current->id == id) {
+            current->ref_count++;
+            break;
+        }
+        current = current->next;
     }
 }
 
 void MPointerGC::DecrementRefCount(int id) {
     std::lock_guard<std::mutex> lock(mtx);
-    if (ref_counts.find(id) != ref_counts.end()) {
-        ref_counts[id]--;
-        if (ref_counts[id] == 0) {
-            DeregisterPointer(id);  // Eliminar el puntero si el contador llega a cero
+    Node* current = head;
+
+    while (current) {
+        if (current->id == id) {
+            current->ref_count--;
+            if (current->ref_count == 0) {
+                DeregisterPointer(id);  // Eliminar el puntero si el contador llega a cero
+            }
+            break;
         }
+        current = current->next;
     }
 }
 
@@ -64,13 +86,23 @@ void MPointerGC::CollectGarbage() {
     std::lock_guard<std::mutex> lock(mtx);
     std::cout << "Collecting garbage..." << std::endl;
 
-    for (auto it = pointers.begin(); it != pointers.end();) {
-        if (ref_counts[it->first] == 0) {  // Verificar si el puntero debe ser eliminado
-            it->second.second(it->second.first);  // Llama a la función de eliminación
-            it = pointers.erase(it);  // Elimina del mapa
-            ref_counts.erase(it->first);  // Elimina el contador de referencias
+    Node* current = head;
+    Node* previous = nullptr;
+
+    while (current) {
+        if (current->ref_count == 0) {  // Verificar si el puntero debe ser eliminado
+            if (previous) {
+                previous->next = current->next;
+            } else {
+                head = current->next;
+            }
+            current->deleter(current->ptr);
+            Node* toDelete = current;
+            current = current->next;
+            delete toDelete;
         } else {
-            ++it;
+            previous = current;
+            current = current->next;
         }
     }
 
