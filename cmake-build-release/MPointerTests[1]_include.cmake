@@ -1,0 +1,5 @@
+if(EXISTS "C:/Users/snipe/OneDrive/Desktop/MPointer/cmake-build-release/MPointerTests[1]_tests.cmake")
+  include("C:/Users/snipe/OneDrive/Desktop/MPointer/cmake-build-release/MPointerTests[1]_tests.cmake")
+else()
+  add_test(MPointerTests_NOT_BUILT MPointerTests_NOT_BUILT)
+endif()
