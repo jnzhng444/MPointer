@@ -22,6 +22,7 @@ MPointer<T>::~MPointer() {
     int currentRefCount = MPointerGC::GetInstance().GetRefCount(id);  // Obtener el contador de referencias actual
     std::cout << "Destroying MPointer with ID: " << id << ", current ref_count: " << currentRefCount << std::endl;
     MPointerGC::GetInstance().DeregisterPointer(id);  // Eliminar el puntero del garbage collector
+
 }
 
 

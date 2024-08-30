@@ -130,14 +130,24 @@ void MPointerGC::debug() {
         while (current) {
             std::cout << "ID: " << current->id
                       << ", Address: " << current->ptr
-                      << ", RefCount: " << current->ref_count
-                      << std::endl;
+                      << ", RefCount: " << current->ref_count;
+
+            // Intentar imprimir el valor. Como current->ptr es un void*, necesitamos hacer un cast.
+            try {
+                // Asumimos que el puntero apunta a un tipo T, donde T es un tipo imprimible (como int).
+                std::cout << ", Value: " << *static_cast<int*>(current->ptr);
+            } catch (...) {
+                std::cout << ", Value: <non-displayable>";
+            }
+
+            std::cout << std::endl;
             current = current->next;
         }
     }
 
     std::cout << "=== End of Debug Info ===" << std::endl;
 }
+
 
 int MPointerGC::GetRefCount(int id) {
     std::lock_guard<std::mutex> lock(mtx);
