@@ -37,6 +37,9 @@ public:
 
     void StartGarbageCollector();  // Iniciar el garbage collector
     void CollectGarbage();  // Recolectar basura
+    void debug();
+    int GetRefCount(int id) ;  // Declaración de la función para obtener el contador de referencias
+
 };
 
 #endif // MPOINTERGC_H

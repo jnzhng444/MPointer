@@ -19,9 +19,11 @@ MPointer<T> MPointer<T>::New() {
 
 template <typename T>
 MPointer<T>::~MPointer() {
-    std::cout << "Destroying MPointer with ID: " << id << std::endl;
+    int currentRefCount = MPointerGC::GetInstance().GetRefCount(id);  // Obtener el contador de referencias actual
+    std::cout << "Destroying MPointer with ID: " << id << ", current ref_count: " << currentRefCount << std::endl;
     MPointerGC::GetInstance().DeregisterPointer(id);  // Eliminar el puntero del garbage collector
 }
+
 
 template <typename T>
 T& MPointer<T>::operator*() {
@@ -31,6 +33,13 @@ T& MPointer<T>::operator*() {
 template <typename T>
 T* MPointer<T>::operator&() {
     return ptr;  // Retornar el valor almacenado en el puntero
+}
+
+template <typename T>
+MPointer<T>::MPointer(const MPointer<T>& other) {
+    ptr = other.ptr;
+    id = other.id;
+    MPointerGC::GetInstance().IncrementRefCount(id);  // Incrementar contador de referencias
 }
 
 template <typename T>

@@ -22,6 +22,8 @@ public:
     MPointer<T>& operator=(const T& value);  // Sobrecarga del operador = para asignación de valor directo
 
     int GetID() const;  // Obtiene el ID del MPointer
+    MPointer(const MPointer<T>& other);
+
 };
 
 #include "MPointer.tpp"
