@@ -1,21 +1,15 @@
 # ninja log v6
 14	642	7467582560468997	CMakeFiles/MPointer.dir/src/main.cpp.obj	da2cdc379fbe9227
-8	313	7467585239200430	build.ninja	38f3f2fbab16142c
+4	432	7471132840563710	build.ninja	38f3f2fbab16142c
 722	812	7467582567553616	libMPointerLib.a	d3402662aa9813c8
-477	555	7452954910327243	MPointer.exe	64cadf8f1f114e1b
+23	104	7467585240471329	MPointer.exe	64cadf8f1f114e1b
+8	1252	7467591517732967	CMakeFiles/MPointerTests.dir/tests/mpointer_tests.cpp.obj	1d8db903bfc14daa
 8	722	7467582560412957	CMakeFiles/MPointerLib.dir/src/MPointerGC.cpp.obj	ba35db0ec0bd1211
 7	899	7467583257386245	CMakeFiles/MPointer.dir/tests/mpointer_tests.cpp.obj	3874fe6fbd5f5fd8
-4	432	7467585239200430	build.ninja	38f3f2fbab16142c
-23	104	7467585240471329	MPointer.exe	64cadf8f1f114e1b
 11	1041	7467586995133961	googletest/googletest/CMakeFiles/gtest_main.dir/src/gtest_main.cc.obj	1eb54842d82f6933
-16	1098	7467586995179111	CMakeFiles/MPointerTests.dir/tests/mpointer_tests.cpp.obj	1d8db903bfc14daa
 6	9258	7467586995083886	googletest/googletest/CMakeFiles/gtest.dir/src/gtest-all.cc.obj	fc3bde964ca7be2c
 9259	9351	7467587087621563	lib/libgtest.a	cb385e3013282306
 9351	9408	7467587088538971	lib/libgtest_main.a	bf7bb8385f94e7ba
-9408	9637	7467587091337828	MPointerTests.exe	6455cb0f9d9e9f97
-9408	9637	7467587091337828	MPointerTests[1]_tests.cmake	6455cb0f9d9e9f97
-9408	9637	7467587091337828	C:/Users/snipe/OneDrive/Desktop/MPointer/cmake-build-release/MPointerTests[1]_tests.cmake	6455cb0f9d9e9f97
-8	1252	7467591517732967	CMakeFiles/MPointerTests.dir/tests/mpointer_tests.cpp.obj	1d8db903bfc14daa
-1252	1487	7467591532460106	MPointerTests.exe	6455cb0f9d9e9f97
 1252	1487	7467591532460106	MPointerTests[1]_tests.cmake	6455cb0f9d9e9f97
+1252	1487	7467591532460106	MPointerTests.exe	6455cb0f9d9e9f97
 1252	1487	7467591532460106	C:/Users/snipe/OneDrive/Desktop/MPointer/cmake-build-release/MPointerTests[1]_tests.cmake	6455cb0f9d9e9f97
