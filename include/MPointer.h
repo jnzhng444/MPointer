@@ -20,6 +20,7 @@ public:
 
     MPointer<T>& operator=(const MPointer<T>& other);  // Sobrecarga del operador =
     MPointer<T>& operator=(const T& value);  // Sobrecarga del operador = para asignación de valor directo
+    MPointer<T>& operator=(std::nullptr_t);  // Sobrecarga para nullptr
 
     int GetID() const;  // Obtiene el ID del MPointer
     MPointer(const MPointer<T>& other);

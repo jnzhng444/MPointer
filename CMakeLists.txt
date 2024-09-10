@@ -37,7 +37,11 @@ add_executable(MPointer src/main.cpp
 target_link_libraries(MPointer MPointerLib)
 
 # Crear ejecutable de prueba
-add_executable(MPointerTests tests/mpointer_tests.cpp)
+add_executable(MPointerTests tests/mpointer_tests.cpp
+        tests/doublylinkedlist_tests.cpp
+        tests/qstest.cpp
+        tests/bstest.cpp
+        tests/istest.cpp)
 
 # Enlazar Google Test y la biblioteca estática al ejecutable de pruebas
 target_link_libraries(MPointerTests gtest gtest_main MPointerLib)

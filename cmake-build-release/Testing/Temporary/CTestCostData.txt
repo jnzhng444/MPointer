@@ -1,0 +1,17 @@
+DoublyLinkedListTest.AppendElements 1 0.0095877
+DoublyLinkedListTest.PrependElements 1 0.0084646
+DoublyLinkedListTest.RemoveElement 1 0.0095521
+DoublyLinkedListTest.ClearList 1 0.0100371
+MPointerTestSuite.BasicAllocation 1 0.0096717
+MPointerTestSuite.CopyConstructor 1 0.0110815
+MPointerTestSuite.NullptrAssignment 1 0.0096262
+MPointerTestSuite.DereferenceOperator 1 0.0083928
+MPointerTestSuite.AddressOperator 1 0.0096611
+MPointerTestSuite.MultipleReferences 1 0.0089519
+MPointerTestSuite.GarbageCollector 1 0.0080087
+MPointerTestSuite.DestructorAndGarbageCollection 1 0.0086462
+MPointerTestSuite.AssignmentOperator 1 0.0088735
+MPointerTestSuite.GetIDTest 1 0.0094234
+MPointerGCTest.GarbageCollectorRefCount 1 0.010076
+MPointerGCTest.GarbageCollectorWorks 1 0.0093312
+---

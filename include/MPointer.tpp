@@ -19,11 +19,24 @@ MPointer<T> MPointer<T>::New() {
 
 template <typename T>
 MPointer<T>::~MPointer() {
-    int currentRefCount = MPointerGC::GetInstance().GetRefCount(id);  // Obtener el contador de referencias actual
-    std::cout << "Destroying MPointer with ID: " << id << ", current ref_count: " << currentRefCount << std::endl;
-    MPointerGC::GetInstance().DeregisterPointer(id);  // Eliminar el puntero del garbage collector
+    if (id == -1) {
+        std::cout << "Pointer already invalidated, skipping destruction." << std::endl;
+        return;
+    }
 
+    int currentRefCount = MPointerGC::GetInstance().GetRefCount(id);
+    std::cout << "Destroying MPointer with ID: " << id << ", current ref_count: " << currentRefCount << std::endl;
+
+    MPointerGC::GetInstance().DeregisterPointer(id);
+
+    currentRefCount = MPointerGC::GetInstance().GetRefCount(id);
+    if (currentRefCount == -1) {
+        std::cout << "MPointer with ID: " << id << " successfully deregistered and deleted." << std::endl;
+    } else {
+        std::cout << "MPointer with ID: " << id << " still exists with ref_count: " << currentRefCount << std::endl;
+    }
 }
+
 
 
 template <typename T>
@@ -37,22 +50,38 @@ T* MPointer<T>::operator&() {
 }
 
 template <typename T>
-MPointer<T>::MPointer(const MPointer<T>& other) {
-    ptr = other.ptr;
-    id = other.id;
-    MPointerGC::GetInstance().IncrementRefCount(id);  // Incrementar contador de referencias
+MPointer<T>& MPointer<T>::operator=(std::nullptr_t) {
+    if (ptr) {
+        MPointerGC::GetInstance().DeregisterPointer(id);  // Eliminar el puntero del garbage collector
+        ptr = nullptr;
+        id = -1;  // Establecer el ID como inválido
+    }
+    return *this;
 }
 
 template <typename T>
 MPointer<T>& MPointer<T>::operator=(const MPointer<T>& other) {
     if (this != &other) {
-        MPointerGC::GetInstance().DeregisterPointer(id);  // Eliminar el puntero actual del garbage collector
-        ptr = other.ptr;  // Copiar el puntero
-        id = other.id;  // Copiar el ID
-        MPointerGC::GetInstance().IncrementRefCount(id);  // Incrementar el contador de referencias
+        // Deregistrar el puntero actual
+        MPointerGC::GetInstance().DeregisterPointer(id);
+
+        // Asignar el nuevo puntero
+        ptr = other.ptr;
+        id = other.id;
+
+        // Incrementar el contador de referencias del nuevo puntero
+        MPointerGC::GetInstance().IncrementRefCount(id);
     }
     return *this;
 }
+
+template <typename T>
+MPointer<T>::MPointer(const MPointer<T>& other) {
+    ptr = other.ptr;
+    id = other.id;
+    MPointerGC::GetInstance().IncrementRefCount(id);  // Incrementar el contador de referencias
+}
+
 
 template <typename T>
 MPointer<T>& MPointer<T>::operator=(const T& value) {

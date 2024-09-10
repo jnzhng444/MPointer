@@ -122,6 +122,34 @@ build CMakeFiles/MPointerTests.dir/tests/mpointer_tests.cpp.obj: CXX_COMPILER__M
   OBJECT_DIR = CMakeFiles\MPointerTests.dir
   OBJECT_FILE_DIR = CMakeFiles\MPointerTests.dir\tests
 
+build CMakeFiles/MPointerTests.dir/tests/doublylinkedlist_tests.cpp.obj: CXX_COMPILER__MPointerTests_unscanned_Release C$:/Users/snipe/OneDrive/Desktop/MPointer/tests/doublylinkedlist_tests.cpp || cmake_object_order_depends_target_MPointerTests
+  DEP_FILE = CMakeFiles\MPointerTests.dir\tests\doublylinkedlist_tests.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/snipe/OneDrive/Desktop/MPointer/include -isystem C:/Users/snipe/OneDrive/Desktop/MPointer/googletest/googletest/include -isystem C:/Users/snipe/OneDrive/Desktop/MPointer/googletest/googletest
+  OBJECT_DIR = CMakeFiles\MPointerTests.dir
+  OBJECT_FILE_DIR = CMakeFiles\MPointerTests.dir\tests
+
+build CMakeFiles/MPointerTests.dir/tests/qstest.cpp.obj: CXX_COMPILER__MPointerTests_unscanned_Release C$:/Users/snipe/OneDrive/Desktop/MPointer/tests/qstest.cpp || cmake_object_order_depends_target_MPointerTests
+  DEP_FILE = CMakeFiles\MPointerTests.dir\tests\qstest.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/snipe/OneDrive/Desktop/MPointer/include -isystem C:/Users/snipe/OneDrive/Desktop/MPointer/googletest/googletest/include -isystem C:/Users/snipe/OneDrive/Desktop/MPointer/googletest/googletest
+  OBJECT_DIR = CMakeFiles\MPointerTests.dir
+  OBJECT_FILE_DIR = CMakeFiles\MPointerTests.dir\tests
+
+build CMakeFiles/MPointerTests.dir/tests/bstest.cpp.obj: CXX_COMPILER__MPointerTests_unscanned_Release C$:/Users/snipe/OneDrive/Desktop/MPointer/tests/bstest.cpp || cmake_object_order_depends_target_MPointerTests
+  DEP_FILE = CMakeFiles\MPointerTests.dir\tests\bstest.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/snipe/OneDrive/Desktop/MPointer/include -isystem C:/Users/snipe/OneDrive/Desktop/MPointer/googletest/googletest/include -isystem C:/Users/snipe/OneDrive/Desktop/MPointer/googletest/googletest
+  OBJECT_DIR = CMakeFiles\MPointerTests.dir
+  OBJECT_FILE_DIR = CMakeFiles\MPointerTests.dir\tests
+
+build CMakeFiles/MPointerTests.dir/tests/istest.cpp.obj: CXX_COMPILER__MPointerTests_unscanned_Release C$:/Users/snipe/OneDrive/Desktop/MPointer/tests/istest.cpp || cmake_object_order_depends_target_MPointerTests
+  DEP_FILE = CMakeFiles\MPointerTests.dir\tests\istest.cpp.obj.d
+  FLAGS = -O3 -DNDEBUG -fdiagnostics-color=always
+  INCLUDES = -IC:/Users/snipe/OneDrive/Desktop/MPointer/include -isystem C:/Users/snipe/OneDrive/Desktop/MPointer/googletest/googletest/include -isystem C:/Users/snipe/OneDrive/Desktop/MPointer/googletest/googletest
+  OBJECT_DIR = CMakeFiles\MPointerTests.dir
+  OBJECT_FILE_DIR = CMakeFiles\MPointerTests.dir\tests
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target MPointerTests
@@ -130,7 +158,7 @@ build CMakeFiles/MPointerTests.dir/tests/mpointer_tests.cpp.obj: CXX_COMPILER__M
 #############################################
 # Link the executable MPointerTests.exe
 
-build MPointerTests.exe MPointerTests[1]_tests.cmake | ${cmake_ninja_workdir}MPointerTests[1]_tests.cmake: CXX_EXECUTABLE_LINKER__MPointerTests_Release CMakeFiles/MPointerTests.dir/tests/mpointer_tests.cpp.obj | lib/libgtest.a lib/libgtest_main.a libMPointerLib.a lib/libgtest.a || libMPointerLib.a lib/libgtest.a lib/libgtest_main.a
+build MPointerTests.exe MPointerTests[1]_tests.cmake | ${cmake_ninja_workdir}MPointerTests[1]_tests.cmake: CXX_EXECUTABLE_LINKER__MPointerTests_Release CMakeFiles/MPointerTests.dir/tests/mpointer_tests.cpp.obj CMakeFiles/MPointerTests.dir/tests/doublylinkedlist_tests.cpp.obj CMakeFiles/MPointerTests.dir/tests/qstest.cpp.obj CMakeFiles/MPointerTests.dir/tests/bstest.cpp.obj CMakeFiles/MPointerTests.dir/tests/istest.cpp.obj | lib/libgtest.a lib/libgtest_main.a libMPointerLib.a lib/libgtest.a || libMPointerLib.a lib/libgtest.a lib/libgtest_main.a
   FLAGS = -O3 -DNDEBUG
   LINK_LIBRARIES = lib/libgtest.a  lib/libgtest_main.a  libMPointerLib.a  lib/libgtest.a  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\MPointerTests.dir

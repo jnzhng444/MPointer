@@ -10,6 +10,7 @@
 class MPointerGC {
 private:
     struct Node {
+        //Lista interna MPointerGC
         int id;
         void* ptr;
         std::function<void(void*)> deleter;

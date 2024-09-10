@@ -24,31 +24,43 @@ int MPointerGC::RegisterPointer(void* mpointer, std::function<void(void*)> delet
 }
 
 void MPointerGC::DeregisterPointer(int id) {
+    if (id == -1) {
+        std::cout << "Pointer with invalid ID (-1), skipping deregistration." << std::endl;
+        return;
+    }
+
     std::lock_guard<std::mutex> lock(mtx);
     Node* current = head;
     Node* previous = nullptr;
 
     while (current) {
         if (current->id == id) {
-            current->ref_count--;  // Decrementar el contador de referencias
+            current->ref_count--;
+
             if (current->ref_count == 0) {
-                std::cout << "ID: " << current->id << " ref_count is 0, pointer will be deleted." << std::endl;
                 if (previous) {
                     previous->next = current->next;
                 } else {
                     head = current->next;
                 }
-                current->deleter(current->ptr);
-                delete current;
+
+                std::cout << "ID: " << current->id << " ref_count reached 0, deleting..." << std::endl;
+                current->deleter(current->ptr);  // Eliminar el puntero
+                delete current;  // Eliminar el nodo
             } else {
-                std::cout << "ID: " << current->id << " ref_count decremented to " << current->ref_count << std::endl;
+                std::cout << "ID: " << id << " ref_count decremented to " << current->ref_count << std::endl;
             }
-            break;
+            return;
         }
         previous = current;
         current = current->next;
     }
+
+    std::cout << "Pointer with ID " << id << " not found in the list." << std::endl;
 }
+
+
+
 
 
 void MPointerGC::IncrementRefCount(int id) {
