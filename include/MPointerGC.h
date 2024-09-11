@@ -7,40 +7,48 @@
 #include <chrono>
 #include <iostream>
 
+// Enumeración para los tipos de datos
+enum class DataType {
+    INT,
+    BOOL,
+    FLOAT,
+    DOUBLE,
+    UNKNOWN
+};
+
 class MPointerGC {
 private:
     struct Node {
-        //Lista interna MPointerGC
         int id;
         void* ptr;
         std::function<void(void*)> deleter;
-        int ref_count;  // Contador de referencias
+        int ref_count;
         Node* next;
+        DataType type;  // Tipo de dato
 
-        Node(int i, void* p, std::function<void(void*)> d) : id(i), ptr(p), deleter(d), ref_count(1), next(nullptr) {}
+        Node(int i, void* p, std::function<void(void*)> d, DataType t)
+            : id(i), ptr(p), deleter(d), ref_count(1), next(nullptr), type(t) {}
     };
 
-
-    Node* head;  // Cabeza de la lista enlazada
+    Node* head;
     std::mutex mtx;
     static MPointerGC* instance;
     int id_counter;
 
-    MPointerGC();  // Constructor privado
+    MPointerGC();
 
 public:
     static MPointerGC& GetInstance();
 
-    int RegisterPointer(void* mpointer, std::function<void(void*)> deleter);  // Registrar un nuevo puntero
-    void DeregisterPointer(int id);  // Eliminar un puntero registrado
-    void IncrementRefCount(int id);  // Incrementar el contador de referencias
-    void DecrementRefCount(int id);  // Decrementar el contador de referencias
+    int RegisterPointer(void* mpointer, std::function<void(void*)> deleter, DataType type);  // Registrar con tipo de dato
+    void DeregisterPointer(int id);
+    void IncrementRefCount(int id);
+    void DecrementRefCount(int id);
 
-    void StartGarbageCollector();  // Iniciar el garbage collector
-    void CollectGarbage();  // Recolectar basura
+    void StartGarbageCollector();
+    void CollectGarbage();
     void debug();
-    int GetRefCount(int id) ;  // Declaración de la función para obtener el contador de referencias
-
+    int GetRefCount(int id);
 };
 
 #endif // MPOINTERGC_H

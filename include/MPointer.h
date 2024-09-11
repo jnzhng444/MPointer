@@ -23,7 +23,7 @@ public:
     MPointer<T>& operator=(std::nullptr_t);  // Sobrecarga para nullptr
 
     int GetID() const;  // Obtiene el ID del MPointer
-    MPointer(const MPointer<T>& other);
+    MPointer(const MPointer<T>& other);  // Constructor de copia
 
 };
 

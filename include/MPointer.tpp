@@ -6,9 +6,24 @@
 template <typename T>
 MPointer<T>::MPointer() {
     ptr = new T();  // Reservar memoria para un objeto de tipo T
+
+    // Identificar el tipo de dato
+    DataType type = DataType::UNKNOWN;
+
+    if constexpr (std::is_same_v<T, int>) {
+        type = DataType::INT;
+    } else if constexpr (std::is_same_v<T, bool>) {
+        type = DataType::BOOL;
+    } else if constexpr (std::is_same_v<T, float>) {
+        type = DataType::FLOAT;
+    } else if constexpr (std::is_same_v<T, double>) {
+        type = DataType::DOUBLE;
+    }
+
     id = MPointerGC::GetInstance().RegisterPointer(ptr, [](void* p) {
-        delete static_cast<T*>(p);  // Función de eliminación para este tipo
-    });
+        delete static_cast<T*>(p);
+    }, type);
+
     std::cout << "MPointer created with ID: " << id << std::endl;
 }
 
@@ -36,8 +51,6 @@ MPointer<T>::~MPointer() {
         std::cout << "MPointer with ID: " << id << " still exists with ref_count: " << currentRefCount << std::endl;
     }
 }
-
-
 
 template <typename T>
 T& MPointer<T>::operator*() {
@@ -81,7 +94,6 @@ MPointer<T>::MPointer(const MPointer<T>& other) {
     id = other.id;
     MPointerGC::GetInstance().IncrementRefCount(id);  // Incrementar el contador de referencias
 }
-
 
 template <typename T>
 MPointer<T>& MPointer<T>::operator=(const T& value) {

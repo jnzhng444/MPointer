@@ -2,22 +2,20 @@
 
 MPointerGC* MPointerGC::instance = nullptr;
 
-MPointerGC::MPointerGC() : head(nullptr), id_counter(0) {
-    // Constructor vacío
-}
+MPointerGC::MPointerGC() : head(nullptr), id_counter(0) {}
 
 MPointerGC& MPointerGC::GetInstance() {
     if (!instance) {
         instance = new MPointerGC();
-        instance->StartGarbageCollector();  // Iniciar el garbage collector
+        instance->StartGarbageCollector();
     }
     return *instance;
 }
 
-int MPointerGC::RegisterPointer(void* mpointer, std::function<void(void*)> deleter) {
+int MPointerGC::RegisterPointer(void* mpointer, std::function<void(void*)> deleter, DataType type) {
     std::lock_guard<std::mutex> lock(mtx);
     int id = ++id_counter;
-    Node* newNode = new Node(id, mpointer, deleter);
+    Node* newNode = new Node(id, mpointer, deleter, type);  // Registrar con tipo de dato
     newNode->next = head;
     head = newNode;
     return id;
@@ -46,7 +44,7 @@ void MPointerGC::DeregisterPointer(int id) {
 
                 std::cout << "ID: " << current->id << " ref_count reached 0, deleting..." << std::endl;
                 current->deleter(current->ptr);  // Eliminar el puntero
-                delete current;  // Eliminar el nodo
+                delete current;
             } else {
                 std::cout << "ID: " << id << " ref_count decremented to " << current->ref_count << std::endl;
             }
@@ -58,10 +56,6 @@ void MPointerGC::DeregisterPointer(int id) {
 
     std::cout << "Pointer with ID " << id << " not found in the list." << std::endl;
 }
-
-
-
-
 
 void MPointerGC::IncrementRefCount(int id) {
     std::lock_guard<std::mutex> lock(mtx);
@@ -84,7 +78,7 @@ void MPointerGC::DecrementRefCount(int id) {
         if (current->id == id) {
             current->ref_count--;
             if (current->ref_count == 0) {
-                DeregisterPointer(id);  // Eliminar el puntero si el contador llega a cero
+                DeregisterPointer(id);
             }
             break;
         }
@@ -94,8 +88,8 @@ void MPointerGC::DecrementRefCount(int id) {
 
 void MPointerGC::StartGarbageCollector() {
     std::thread([this]() {
-        while (true) {  // Bucle infinito para la recolección continua de basura
-            std::this_thread::sleep_for(std::chrono::seconds(5));  // Espera 5 segundos entre colecciones
+        while (true) {
+            std::this_thread::sleep_for(std::chrono::seconds(5));
             CollectGarbage();
         }
     }).detach();
@@ -109,8 +103,8 @@ void MPointerGC::CollectGarbage() {
     Node* previous = nullptr;
 
     while (current) {
-        if (current->ref_count == 0) {  // Verificar si el puntero debe ser eliminado
-            std::cout << "ID: " << current->id << " has ref_count 0 and will be deleted." << std::endl; // Imprimir antes de eliminar
+        if (current->ref_count == 0) {
+            std::cout << "ID: " << current->id << " has ref_count 0 and will be deleted." << std::endl;
             if (previous) {
                 previous->next = current->next;
             } else {
@@ -129,7 +123,6 @@ void MPointerGC::CollectGarbage() {
     std::cout << "Garbage collection cycle completed." << std::endl;
 }
 
-
 void MPointerGC::debug() {
     std::lock_guard<std::mutex> lock(mtx);
     Node* current = head;
@@ -144,12 +137,23 @@ void MPointerGC::debug() {
                       << ", Address: " << current->ptr
                       << ", RefCount: " << current->ref_count;
 
-            // Intentar imprimir el valor. Como current->ptr es un void*, necesitamos hacer un cast.
-            try {
-                // Asumimos que el puntero apunta a un tipo T, donde T es un tipo imprimible (como int).
-                std::cout << ", Value: " << *static_cast<int*>(current->ptr);
-            } catch (...) {
-                std::cout << ", Value: <non-displayable>";
+            // Imprimir valor según el tipo de dato
+            switch (current->type) {
+                case DataType::INT:
+                    std::cout << ", Value: " << *static_cast<int*>(current->ptr);
+                    break;
+                case DataType::BOOL:
+                    std::cout << ", Value: " << (*static_cast<bool*>(current->ptr) ? "true" : "false");
+                    break;
+                case DataType::FLOAT:
+                    std::cout << ", Value: " << *static_cast<float*>(current->ptr);
+                    break;
+                case DataType::DOUBLE:
+                    std::cout << ", Value: " << *static_cast<double*>(current->ptr);
+                    break;
+                default:
+                    std::cout << ", Value: <non-displayable>";
+                    break;
             }
 
             std::cout << std::endl;
@@ -160,18 +164,16 @@ void MPointerGC::debug() {
     std::cout << "=== End of Debug Info ===" << std::endl;
 }
 
-
 int MPointerGC::GetRefCount(int id) {
     std::lock_guard<std::mutex> lock(mtx);
     Node* current = head;
 
     while (current) {
         if (current->id == id) {
-            return current->ref_count;  // Retornar el contador de referencias
+            return current->ref_count;
         }
         current = current->next;
     }
 
-    return -1;  // Si no se encuentra el ID, retornar -1 (indicando un error)
+    return -1;
 }
-
