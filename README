@@ -1,1 +1,21 @@
+Estimado usuario/a:
+
+Para ejecutar el programa MPointer se utiliza el CMake Application llamado MPointer.
+Para ejecutar las pruebas unitarias de GTest se utiliza el CMake Application llamado MPointerTests.
+Para utilizar MPointer como una biblioteca en otro archivo, se requiere hacer unos cambios en el CMake del archivo que se desea utilizar:
+1. Agregar en el CMakeLists la siguiente linea
+include_directories("ruta.../MPointer/include")
+2. Especificar el directorio donde se encuentra la biblioteca
+link_directories(".../MPointer/cmake-build-release")
+3.  Por ultimo, agregar la siguiente linea
+target_link_libraries(NombreDelProyectoNuevo "ruta.../MPointer/cmake-build-release/libMPointerLib.a")
+
+IMPORTANTE hacer los imports correspondientes para poder utilizar MPointers
+#include "MPointer.h"
+#include "Lista/DoublyLinkedList.h"
+#include "Ordenar/BubbleSort.h"
+#include "Ordenar/InsertionSort.h"
+#include "Ordenar/QuickSort.h"
+
+Gracias por su atencion
 

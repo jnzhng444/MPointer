@@ -65,9 +65,9 @@ int main() {
     MPointerGC::GetInstance().debug();
 
     // Selecciona y aplica el algoritmo de ordenamiento
-    //QuickSort<int>::sort(list);
+    QuickSort<int>::sort(list);
     //BubbleSort<int>::sort(list);
-    InsertionSort<int>::sort(list);
+    //InsertionSort<int>::sort(list);
 
 
     std::cout << "Lista despues de ordenar:" << std::endl;
